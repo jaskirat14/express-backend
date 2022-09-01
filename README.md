@@ -15,7 +15,7 @@ Install npm dependencies:
 ```
 cd express-backend
 npm install
-Place .env file in project root
+Place .env file in project root (please update the conenction uri)
 ```
 
 

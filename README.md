@@ -13,8 +13,9 @@ git clone https://github.com/jaskirat14/express-backend.git
 
 Install npm dependencies:
 ```
-npm install
 cd express-backend
+npm install
+Place .env file in project root
 ```
 
 
@@ -27,7 +28,11 @@ npx prisma migrate dev --name init
 ```
 
 When `npx prisma migrate dev` is executed against a newly created database, seeding is also triggered.  The seed file in [`prisma/seed.js`](./prisma/seed.js) will be executed and your database will be populated with the sample data.
-
+Note:
+If seed is not triggered we can run it manually using:
+```
+node seed.js
+```
 
 ### 3. Start the REST API server
 
@@ -75,10 +80,9 @@ You can access the REST API of the server using the following endpoints:
 - `/post/:id`: Delete a post by its `id`
 
 
-## Reference
+## References
 - https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-node-mysql
 - https://github.com/prisma/prisma-examples/tree/latest/javascript/rest-express
 
 ## Next steps
 - Check out the [Prisma docs](https://www.prisma.io/docs)
-

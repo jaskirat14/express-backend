@@ -8,26 +8,9 @@ const port = 3000
 
 app.use(express.json())
 
-app.post(`/signup`, async (req, res) => {
-  const { name, email, posts } = req.body
-
-  const postData = posts
-    ? posts.map((post) => {
-        return { title: post.title, content: post.content || undefined }
-      })
-    : []
-
-  const result = await prisma.user.create({
-    data: {
-      name,
-      email,
-      posts: {
-        create: postData,
-      },
-    },
-  })
-  res.json(result)
-})
+// Import all routes
+const user = require('./routes/user');
+app.use('/api/v1', user)
 
 app.post(`/post`, async (req, res) => {
   const { title, content, authorEmail } = req.body

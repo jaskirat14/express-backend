@@ -24,3 +24,8 @@ exports.create_user = async (req, res) => {
     res.json(result)
   
   };
+
+exports.get_all_users = async(req, res)=>{
+    const users = await prisma.user.findMany()
+    res.json(users)
+}

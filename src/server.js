@@ -10,7 +10,11 @@ app.use(express.json())
 
 // Import all routes
 const user = require('./routes/user');
+const post = require('./routes/post');
+
 app.use('/api/v1', user)
+app.use('/api/v1', post)
+
 
 app.post(`/post`, async (req, res) => {
   const { title, content, authorEmail } = req.body
@@ -74,10 +78,6 @@ app.delete(`/post/:id`, async (req, res) => {
   res.json(post)
 })
 
-app.get('/users', async (req, res) => {
-  const users = await prisma.user.findMany()
-  res.json(users)
-})
 
 app.get('/user/:id/drafts', async (req, res) => {
   const { id } = req.params
@@ -95,14 +95,6 @@ app.get('/user/:id/drafts', async (req, res) => {
   res.json(drafts)
 })
 
-app.get(`/post/:id`, async (req, res) => {
-  const { id } = req.params
-
-  const post = await prisma.post.findUnique({
-    where: { id: Number(id) },
-  })
-  res.json(post)
-})
 
 app.get('/feed', async (req, res) => {
   const { searchString, skip, take, orderBy } = req.query
